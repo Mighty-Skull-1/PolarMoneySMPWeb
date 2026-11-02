@@ -1,6 +1,6 @@
 import React from 'react';
 import { TournamentStatus } from '../types/tournament';
-import { Shield, Swords, Flame, Trophy, Radio, RefreshCw, Clock, Gavel, BookOpen } from 'lucide-react';
+import { Shield, Swords, Flame, Trophy, Radio, RefreshCw, Clock, Gavel, BookOpen, Snowflake } from 'lucide-react';
 
 export type FeedState = 'live' | 'stale' | 'offline' | 'connecting' | 'demo';
 
@@ -66,8 +66,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center justify-between gap-3 h-16 sm:h-20">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-            <div className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg shadow-amber-500/25 border border-amber-300/30">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-slate-950 font-black" />
+            <div className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-xl bg-gradient-to-br from-sky-300 to-sky-600 shadow-lg shadow-sky-500/25 border border-sky-200/30">
+              <Snowflake className="w-5 h-5 sm:w-6 sm:h-6 text-slate-950 font-black" />
               {feed === 'live' && (
                 <>
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-slate-900 animate-ping" />
@@ -78,10 +78,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="min-w-0">
               <div className="flex items-center gap-2">
                 <h1 className="text-base sm:text-2xl font-black tracking-tight text-white whitespace-nowrap">
-                  WILLY MONEY <span className="text-amber-400">SMP</span>
+                  POLAR <span className="text-amber-400">MONEY</span> SMP
                 </h1>
-                <span className="hidden md:inline-flex text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">
-                  PAPER 1.21+
+                <span className="inline-flex text-[10px] font-bold px-2 py-0.5 rounded bg-sky-400/15 text-sky-300 border border-sky-400/40 whitespace-nowrap">
+                  <span className="hidden sm:inline">SEASON&nbsp;</span>
+                  <span className="sm:hidden">S</span>2
                 </span>
               </div>
               <p className="hidden sm:flex text-xs text-slate-400 items-center gap-2">

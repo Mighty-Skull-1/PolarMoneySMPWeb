@@ -8,6 +8,9 @@ import { ServerInfoModal, timeAgo } from './components/ServerInfoModal';
 import { DraftCenter } from './components/DraftCenter';
 import { RulesGuide } from './components/RulesGuide';
 import { AdminPasswordModal } from './components/AdminPasswordModal';
+import { Season2Hero } from './components/Season2Hero';
+import { Season1Results } from './components/Season1Results';
+import { SEASON2_DATA_FROM } from './data/season2';
 import { isAdminUnlocked } from './lib/admin';
 import type { LeaderboardResponse } from './types/tournament';
 import { mockLeaderboardData } from './data/mockData';
@@ -27,7 +30,7 @@ const CACHE_KEY = 'wmsmp_leaderboard_v2';
 
 const emptyState: LeaderboardResponse = {
   status: {
-    serverName: 'Willy Money SMP',
+    serverName: 'Polar Money SMP',
     onlinePlayers: 0,
     maxPlayers: 0,
     phase: 'DRAFT',
@@ -69,7 +72,9 @@ function saveCache(update: SignedUpdate) {
 }
 
 export function App() {
-  const [live, setLive] = useState<SignedUpdate | null>(() => loadCache());
+  const [rawLive, setLive] = useState<SignedUpdate | null>(() => loadCache());
+  // Updates from before the Season 2 reset are Season 1 data, which now has its own section.
+  const live = rawLive && rawLive.sentAt >= SEASON2_DATA_FROM ? rawLive : null;
   const [isDemo, setIsDemo] = useState(false);
   const [mcStatus, setMcStatus] = useState<McStatus | null>(null);
   const [mcChecked, setMcChecked] = useState(false);
@@ -90,7 +95,7 @@ export function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [, setTick] = useState(0);
 
-  const latestSentAt = useRef<number>(live?.sentAt ?? 0);
+  const latestSentAt = useRef<number>(rawLive?.sentAt ?? 0);
 
   /** Only ever move forward in time, so replayed old messages can't roll the board back. */
   const applyUpdate = useCallback((update: SignedUpdate, arrivedLive: boolean) => {
@@ -199,6 +204,8 @@ export function App() {
   const history = data.history ?? [];
   const draft = data.draft ?? null;
   const showDraft = !isDemo && (data.status.phase === 'DRAFT' || !!draft);
+  /** Season 2 has started sending live standings (or demo mode is on). */
+  const season2Live = isDemo || (!!live && live.data.teams.length > 0);
 
   const q = searchQuery.trim().toLowerCase();
   const filteredTeams = q
@@ -215,7 +222,7 @@ export function App() {
   return (
     <div className="min-h-screen bg-[#080b11] text-slate-100 flex flex-col selection:bg-amber-500 selection:text-slate-950">
       <Navbar
-        status={data.status}
+        status={season2Live ? data.status : null}
         feed={feed}
         draftLive={!!draft && !isDemo}
         isRefreshing={isRefreshing}
@@ -245,7 +252,7 @@ export function App() {
         </div>
       )}
 
-      {!isDemo && feed === 'stale' && lastUpdateAt && (
+      {!isDemo && season2Live && feed === 'stale' && lastUpdateAt && (
         <div className="bg-amber-500/10 border-b border-amber-500/30 text-amber-200 text-xs sm:text-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
             Standings last updated {timeAgo(lastUpdateAt + clockSkewMs)}. They&apos;ll refresh automatically when the server sends new data.
@@ -254,6 +261,13 @@ export function App() {
       )}
 
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full">
+        <Season2Hero />
+
+        {season2Live ? (
+          <>
+        <h2 className="text-xl font-black text-white mb-4 flex items-center gap-2">
+          <Trophy className="w-5 h-5 text-sky-300" /> SEASON 2 · LIVE STANDINGS
+        </h2>
         <StatsOverview
           status={data.status}
           poolCount={pool.length}
@@ -293,16 +307,27 @@ export function App() {
           onSelectTeam={(team) => setSelectedTeamId(team.id)}
           selectedTeamId={selectedTeamId ?? undefined}
         />
+          </>
+        ) : (
+          <div className="p-6 rounded-2xl border border-dashed border-sky-400/30 bg-sky-950/10 text-center">
+            <h2 className="text-lg font-black text-white">Season 2 live standings</h2>
+            <p className="mt-1 text-sm text-slate-400">
+              Teams, credits and the live draft show up here automatically once Season 2 starts.
+            </p>
+          </div>
+        )}
 
-        <RulesGuide banned={isDemo ? undefined : data.banned} />
+        <Season1Results />
+
+        <RulesGuide banned={isDemo || !live ? undefined : data.banned} />
       </main>
 
       <footer className="mt-16 border-t border-slate-800/80 bg-slate-950/60 py-6 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Trophy className="w-4 h-4 text-amber-500" />
-            <span className="font-bold text-slate-300">Willy Money SMP</span>
-            <span>— High-Stakes Minecraft Tournament</span>
+            <span className="font-bold text-slate-300">Polar Money SMP</span>
+            <span>— Season 2 · formerly Willy Money SMP</span>
           </div>
           <div>{lastUpdateAt && !isDemo ? `Last update ${timeAgo(lastUpdateAt + clockSkewMs)}` : 'Paper 1.21+'}</div>
         </div>

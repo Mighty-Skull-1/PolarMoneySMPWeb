@@ -86,7 +86,7 @@ export async function verifyAndDecode(text: string): Promise<SignedUpdate | null
 // ---------------------------------------------------------------- compact payload -> app data
 
 const asTier = (t: unknown): PlayerTier =>
-  t === 'CAPTAIN' || t === 'A' || t === 'B' || t === 'C' ? t : 'UNRANKED';
+  t === 'CAPTAIN' || t === 'S' || t === 'A' || t === 'B' || t === 'C' || t === 'D' ? t : 'UNRANKED';
 
 const asPhase = (p: unknown): SMPPhase =>
   p === 'DRAFT' || p === 'GRACE' || p === 'PVP' || p === 'FINALE' ? p : 'DRAFT';
@@ -156,7 +156,7 @@ export function decodePayload(raw: any): LeaderboardResponse {
 
   return {
     status: {
-      serverName: 'Willy Money SMP',
+      serverName: 'Polar Money SMP',
       onlinePlayers: Number(raw.on) || 0,
       maxPlayers: Number(raw.max) || 0,
       phase,

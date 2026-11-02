@@ -74,7 +74,7 @@ export const ServerInfoModal: React.FC<ServerInfoModalProps> = ({
               <Server className="w-5 h-5" />
             </div>
             <div>
-              <h3 id="server-info-title" className="text-lg font-black text-white">Join Willy Money SMP</h3>
+              <h3 id="server-info-title" className="text-lg font-black text-white">Join Polar Money SMP</h3>
               <p className="text-xs text-slate-400">Java Edition 1.21+</p>
             </div>
           </div>

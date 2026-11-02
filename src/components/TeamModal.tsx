@@ -14,6 +14,10 @@ export const TeamModal: React.FC<TeamModalProps> = ({ team, onClose }) => {
     switch (tier) {
       case 'CAPTAIN':
         return <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10px] font-black">CAPTAIN</span>;
+      case 'S':
+        return <span className="px-2 py-0.5 rounded bg-yellow-400/20 text-yellow-200 border border-yellow-400/50 text-[10px] font-black">TIER S</span>;
+      case 'D':
+        return <span className="px-2 py-0.5 rounded bg-sky-400/15 text-sky-300 border border-sky-400/40 text-[10px] font-black">TIER D</span>;
       case 'A':
         return <span className="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 text-[10px] font-black">TIER A</span>;
       case 'B':

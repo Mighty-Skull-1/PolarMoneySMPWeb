@@ -1,6 +1,6 @@
 export type SMPPhase = 'DRAFT' | 'GRACE' | 'PVP' | 'FINALE';
 
-export type PlayerTier = 'CAPTAIN' | 'A' | 'B' | 'C' | 'UNRANKED';
+export type PlayerTier = 'CAPTAIN' | 'S' | 'A' | 'B' | 'C' | 'D' | 'UNRANKED';
 
 export interface PlayerData {
   uuid: string;

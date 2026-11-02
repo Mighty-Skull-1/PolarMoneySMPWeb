@@ -13,9 +13,11 @@ interface DraftCenterProps {
 
 export const tierStyle: Record<PlayerTier, string> = {
   CAPTAIN: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+  S: 'bg-yellow-400/20 text-yellow-200 border-yellow-400/50',
   A: 'bg-rose-500/20 text-rose-300 border-rose-500/40',
   B: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
   C: 'bg-slate-500/20 text-slate-300 border-slate-500/40',
+  D: 'bg-sky-400/15 text-sky-300 border-sky-400/40',
   UNRANKED: 'bg-slate-800 text-slate-400 border-slate-700',
 };
 
@@ -53,7 +55,7 @@ export const DraftCenter: React.FC<DraftCenterProps> = ({ draft, pool, history, 
   const progress = draft ? Math.min(1, remainingMs / (draft.length * 1000)) : 0;
   const urgent = draft && seconds <= 5;
 
-  const tiers: Array<'A' | 'B' | 'C'> = ['A', 'B', 'C'];
+  const tiers: Array<'S' | 'A' | 'B' | 'C' | 'D'> = ['S', 'A', 'B', 'C', 'D'];
 
   return (
     <section className="mb-10" aria-labelledby="draft-heading">

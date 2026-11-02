@@ -52,7 +52,7 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
             <Sparkles className="w-5 h-5 text-amber-400" /> TOURNAMENT HANDBOOK & MECHANICS
           </h2>
           <p className="text-xs text-slate-400">
-            Essential rules, currencies, and events for Willy Money SMP ·{' '}
+            Season 2 rules, economy and events for Polar Money SMP ·{' '}
             <a href="./guide.html" className="text-amber-400 hover:text-amber-300 font-semibold">
               Read the full tournament guide →
             </a>
@@ -146,14 +146,14 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="font-bold text-amber-400 text-sm">🪙 Draft Credits</h4>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-300">Phase 1 Only</span>
+              <h4 className="font-bold text-amber-400 text-sm">🎒 Draft: Item Bidding</h4>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-500/10 text-sky-300">New in Season 2</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed mb-3">
-              Given to Team Captains at the start (default 300). Captains spend these in live 30-second auctions to build their rosters. Bids go up 5 at a time (5, 10, 15...) and the highest bid when the clock runs out wins.
+              Captains build their rosters by bidding with items from their inventory instead of Draft Credits. There is no bid timer. Players are split into S, A, B, C and D tiers.
             </p>
-            <div className="text-[11px] text-slate-400 font-mono bg-slate-900 p-2 rounded border border-slate-800">
-              Command: /bid (raises the top bid by 5)
+            <div className="text-[11px] text-slate-400 bg-slate-900 p-2 rounded border border-slate-800">
+              Season 1 used Draft Credits in 30-second auctions.
             </div>
           </div>
 
@@ -163,7 +163,7 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
               <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300">Primary Economy</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed mb-3">
-              Earned from Player Kills (+10 to +25), placing in KOTH (up to +125), placing in the Team Deathmatch (up to +125), opening Airdrops, and placing in Bingo (up to +150). Determines final team standings on the leaderboard!
+              Earned from player kills, holding Capture Points, placing in Bingo and placing in the Team Deathmatch. Determines the final team standings on the leaderboard!
             </p>
             <div className="text-[11px] text-slate-400 font-mono bg-slate-900 p-2 rounded border border-slate-800">
               Command: /leaderboard (Ranks squads by Game Credits)
@@ -205,21 +205,22 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
             <div className="flex items-center gap-2 mb-2">
-              <Target className="w-4 h-4 text-rose-400" />
-              <h4 className="font-bold text-white text-sm">King of the Hill (KOTH)</h4>
+              <Target className="w-4 h-4 text-sky-300" />
+              <h4 className="font-bold text-white text-sm">Capture Points</h4>
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-300">NEW</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              A 5-block flame ring appears for 5 minutes and everyone gets a Knockback II wooden sword (breaks after about 5 hits). Teams that hold it longest win: <strong>1st +125</strong>, <strong>2nd +100</strong>, <strong>3rd +75</strong>, <strong>4th +50</strong>, <strong>5th +25</strong> Game Credits.
+              Capture Points replace airdrops in Season 2. Teams fight to take and hold them to earn for their team. Full details are coming soon.
             </p>
           </div>
 
           <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800">
             <div className="flex items-center gap-2 mb-2">
-              <Gift className="w-4 h-4 text-amber-400" />
-              <h4 className="font-bold text-white text-sm">Proximity Airdrops</h4>
+              <Gift className="w-4 h-4 text-slate-500" />
+              <h4 className="font-bold text-slate-300 text-sm">Removed for Season 2</h4>
             </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Common, Rare, and Legendary care packages drop near active players with smoke flares, containing netherite scraps, totems, and credit tokens.
+            <p className="text-xs text-slate-400 leading-relaxed">
+              <strong className="text-slate-300">King of the Hill</strong>, <strong className="text-slate-300">Proximity Airdrops</strong> and the <strong className="text-slate-300">tracker compass</strong> are gone this season.
             </p>
           </div>
 
@@ -229,7 +230,7 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
               <h4 className="font-bold text-white text-sm">5x5 Lockout Bingo</h4>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              25 survival challenges, first team to finish one claims it. When bingo ends, most squares wins: <strong>+150 / +120 / +100 / +50 / +25</strong> for 1st to 5th.
+              25 survival challenges, first team to finish one claims it. When bingo ends, most squares wins: <strong>+150 / +120 / +100 / +50</strong> for 1st to 4th.
             </p>
           </div>
 
@@ -239,7 +240,7 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
               <h4 className="font-bold text-white text-sm">Final Fight: Team Deathmatch</h4>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              The last event of the tournament: every team fights. Die and you are out of the deathmatch (you spectate until it ends, then you are back in the game). When everyone on your team is out, your team is out: first team out finishes 5th, the last team standing wins. Placings: <strong>1st +125</strong>, <strong>2nd +100</strong>, <strong>3rd +75</strong>, <strong>4th +50</strong>, <strong>5th +25</strong>. Every kill is worth <strong>+20 more</strong> than usual, and every 4 minutes a <strong>bounty tier</strong> (Captains → C → A → B) glows and is worth another <strong>+20</strong>. Fight whoever you want, but <strong>no focusing one team the whole deathmatch</strong> (fine). Logging out counts as being knocked out. When it ends, the team with the most Game Credits on the leaderboard wins Willy Money SMP!
+              The last event of the tournament: every team fights. Die and you are out of the deathmatch (you spectate until it ends, then you are back in the game). When everyone on your team is out, your team is out: first team out finishes 4th, the last team standing wins. Placings: <strong>1st +125</strong>, <strong>2nd +100</strong>, <strong>3rd +75</strong>, <strong>4th +50</strong>. Every kill is worth <strong>+20 more</strong> than usual, and every 4 minutes a <strong>bounty tier</strong> glows and is worth another <strong>+20</strong>. Fight whoever you want, but <strong>no focusing one team the whole deathmatch</strong> (fine). Logging out counts as being knocked out. When it ends, the team with the most Game Credits on the leaderboard wins Polar Money SMP Season 2!
             </p>
           </div>
         </div>
