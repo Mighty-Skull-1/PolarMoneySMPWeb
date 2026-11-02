@@ -2,7 +2,7 @@ import React from 'react';
 import { TournamentStatus } from '../types/tournament';
 import { Shield, Swords, Flame, Trophy, Radio, RefreshCw, Clock, Gavel, BookOpen, Snowflake } from 'lucide-react';
 
-export type FeedState = 'live' | 'stale' | 'offline' | 'connecting' | 'demo';
+export type FeedState = 'live' | 'stale' | 'offline' | 'connecting' | 'demo' | 'waiting';
 
 interface NavbarProps {
   status: TournamentStatus | null;
@@ -19,6 +19,7 @@ const FEED_LABEL: Record<FeedState, { text: string; className: string }> = {
   offline: { text: 'Server offline', className: 'text-rose-400' },
   connecting: { text: 'Connecting', className: 'text-slate-400 animate-pulse' },
   demo: { text: 'Demo data', className: 'text-sky-400' },
+  waiting: { text: 'Season 2 soon', className: 'text-sky-300' },
 };
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -77,12 +78,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <h1 className="text-base sm:text-2xl font-black tracking-tight text-white whitespace-nowrap">
+                <h1 className="text-sm sm:text-2xl font-black tracking-tight text-white whitespace-nowrap">
                   POLAR <span className="text-amber-400">MONEY</span> SMP
                 </h1>
-                <span className="inline-flex text-[10px] font-bold px-2 py-0.5 rounded bg-sky-400/15 text-sky-300 border border-sky-400/40 whitespace-nowrap">
-                  <span className="hidden sm:inline">SEASON&nbsp;</span>
-                  <span className="sm:hidden">S</span>2
+                <span className="hidden sm:inline-flex text-[10px] font-bold px-2 py-0.5 rounded bg-sky-400/15 text-sky-300 border border-sky-400/40 whitespace-nowrap">
+                  SEASON 2
                 </span>
               </div>
               <p className="hidden sm:flex text-xs text-slate-400 items-center gap-2">
@@ -120,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={onOpenInfo}
               title={feedLabel.text}
-              className="flex items-center gap-2 p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700"
+              className="hidden sm:flex items-center gap-2 p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700"
             >
               <Radio className={`w-4 h-4 ${feedLabel.className}`} />
               <span className="hidden sm:inline text-xs font-medium text-slate-300">{feedLabel.text}</span>

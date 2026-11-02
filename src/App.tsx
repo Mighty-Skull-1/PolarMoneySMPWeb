@@ -190,7 +190,9 @@ export function App() {
 
   const feed: FeedState = isDemo
     ? 'demo'
-    : connecting && !live
+    : !connecting && !live
+      ? 'waiting'
+      : connecting && !live
       ? 'connecting'
       : mcStatus && !mcStatus.online
         ? 'offline'
