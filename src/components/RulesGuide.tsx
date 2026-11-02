@@ -150,10 +150,10 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
               <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-500/10 text-sky-300">New in Season 2</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed mb-3">
-              Captains build their rosters by bidding with items from their inventory instead of Draft Credits. There is no bid timer. Players are split into S, A, B, C and D tiers.
+              Captains spend their Draft Credits by right-clicking bid items in their hotbar (+5, +10 or +25). There is no bid timer: the auctioneer calls SOLD. Captains are S tier; everyone else is drafted from tiers A, B, C and D (one per tier, per team).
             </p>
             <div className="text-[11px] text-slate-400 bg-slate-900 p-2 rounded border border-slate-800">
-              Season 1 used Draft Credits in 30-second auctions.
+              Season 1 used typed /bid commands and 30-second auctions.
             </div>
           </div>
 
@@ -163,7 +163,7 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
               <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300">Primary Economy</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed mb-3">
-              Earned from player kills, holding Capture Points, placing in Bingo and placing in the Team Deathmatch. Determines the final team standings on the leaderboard!
+              Earned from player kills (S 30, A 25, B 20, C 15, D 10), capturing Capture Points, placing in Bingo and placing in the Team Deathmatch. Determines the final team standings on the leaderboard!
             </p>
             <div className="text-[11px] text-slate-400 font-mono bg-slate-900 p-2 rounded border border-slate-800">
               Command: /leaderboard (Ranks squads by Game Credits)
@@ -210,7 +210,7 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
               <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-300">NEW</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Capture Points replace airdrops in Season 2. Teams fight to take and hold them to earn for their team. Full details are coming soon.
+              There are 8 points around the map and 5 open each day, 2 at a time. The team with the <strong>most players inside</strong> the zone makes progress (a tie freezes it). Hold it for <strong>4 minutes</strong> to take control, then <strong>8 more minutes</strong> to capture it for <strong>+75 credits</strong>. If another team gets the majority, your progress drains and they start their own. Only players inside the zone count; extra players don't make it faster.
             </p>
           </div>
 
@@ -230,7 +230,7 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
               <h4 className="font-bold text-white text-sm">5x5 Lockout Bingo</h4>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              25 survival challenges, first team to finish one claims it. When bingo ends, most squares wins: <strong>+150 / +120 / +100 / +50</strong> for 1st to 4th.
+              25 survival challenges, first team to finish one claims it. The board opens for everyone at once when bingo starts (no peeking early). When bingo ends, most squares wins: <strong>+150 / +120 / +100 / +50</strong> for 1st to 4th.
             </p>
           </div>
 

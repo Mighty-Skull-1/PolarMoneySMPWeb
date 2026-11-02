@@ -230,7 +230,7 @@
             <li><strong>4 teams</strong> (Season 1 had 5).</li>
             <li><strong>New tiers:</strong> players are split into <strong>S, A, B, C and D</strong> tiers.</li>
             <li><strong>Draft:</strong> captains bid with <strong>items from their inventory</strong>. There is no bid timer.</li>
-            <li><strong>Capture Points</strong> replace airdrops. Full details are coming soon.</li>
+            <li><strong>Capture Points</strong> replace airdrops: 5 a day, 2 at a time, most players in the zone wins, +75 per capture.</li>
             <li><strong>Removed:</strong> King of the Hill, Proximity Airdrops and the tracker compass.</li>
         </ul>
         <p>Sections marked <span class="s1-only">SEASON 1 ONLY</span> are kept for reference and don't apply this season.</p>
@@ -292,7 +292,7 @@
             <span class="phase-badge badge-draft">Phase 1</span>
             <h3>📋 Draft Phase</h3>
             <p><strong>PvP Status:</strong> Disabled.</p>
-            <p>Team Captains bid on players from the S, A, B, C and D tiers using items from their inventory. There is no bid timer. Won players are added to the winning Captain's team.</p>
+            <p>Captains are S tier. They draft one player from each of tiers A, B, C and D by right-clicking bid items in their hotbar (+5 / +10 / +25 Draft Credits). There is no bid timer: the auctioneer clicks SOLD. Won players are added to the winning Captain's team.</p>
             <code>/smp phase draft</code>
         </div>
         <div class="card">
@@ -325,10 +325,11 @@
             <li><strong>Standard Respawn:</strong> Players keep their survival gameplay upon dying and respawn at their bed or world spawn.</li>
             <li><strong>Kill Credit Rewards:</strong>
                 <ul>
-                    <li>Killing a <strong>Captain</strong>: <code>+25 Game Credits</code></li>
-                    <li>Killing a <strong>Tier A</strong> player: <code>+15 Game Credits</code></li>
-                    <li>Killing a <strong>Tier B / C</strong> player: <code>+10 Game Credits</code></li>
-                    <li>Killing a <strong>Tier S</strong> or <strong>Tier D</strong> player: values coming soon</li>
+                    <li>Killing a <strong>Tier S</strong> player (Captain): <code>+30 Game Credits</code></li>
+                    <li>Killing a <strong>Tier A</strong> player: <code>+25 Game Credits</code></li>
+                    <li>Killing a <strong>Tier B</strong> player: <code>+20 Game Credits</code></li>
+                    <li>Killing a <strong>Tier C</strong> player: <code>+15 Game Credits</code></li>
+                    <li>Killing a <strong>Tier D</strong> player: <code>+10 Game Credits</code></li>
                 </ul>
             </li>
         </ul>
@@ -338,7 +339,11 @@
 
     <h3>1. 🚩 Capture Points <span class="s1-only" style="background:#0c4a6e;color:#bae6fd">NEW</span></h3>
     <div class="card">
-        <p>Capture Points replace Proximity Airdrops in Season 2. Teams fight to take and hold them to earn for their team. Full details are coming soon.</p>
+        <p><strong>How it runs:</strong> there are 8 Capture Points around the map. Each day 5 of them open, <strong>2 at a time</strong> &mdash; when one is captured the next one unlocks. A boss bar shows every open point, who's holding it and the time left.</p>
+        <p><strong>Majority rule:</strong> the team with the <strong>most players inside the zone</strong> makes progress. If two teams tie for most, the point is <strong>contested</strong> and frozen. Extra players protect your lead but don't speed the timer up. Only players physically inside the zone count.</p>
+        <p><strong>Two phases:</strong> hold the majority for <strong>4 minutes</strong> to take <strong>control</strong>, then keep holding for <strong>8 more minutes</strong> to <strong>capture</strong> it. A capture pays <strong>+75 Game Credits</strong> to the team's Captain.</p>
+        <p><strong>Stealing:</strong> if another team gets the majority, your progress drains away; once it hits zero they start their own. Normal PvP rules apply &mdash; kill or knock defenders out of the zone to break their majority.</p>
+        <p><strong>Admins:</strong> <code>/cp set &lt;name&gt;</code> to save points, <code>/cp startday</code> to open the day's points.</p>
     </div>
 
     <h3 class="removed">🏰 King of the Hill (KOTH) <span class="s1-only">SEASON 1 ONLY</span></h3>
@@ -369,7 +374,7 @@
 
     <h3>3. 🧩 Lockout Bingo</h3>
     <div class="card">
-        <p><strong>How to Start:</strong> <code>/bingo start</code>. View board with <code>/bingo</code>.</p>
+        <p><strong>How to Start:</strong> <code>/bingo start</code>. The board opens for everyone at the same moment when it starts. <code>/bingo</code> is locked until then, so nobody can study the board early.</p>
         <p>An interactive 5x5 board featuring 25 survival tasks (e.g., <em>Mine Ancient Debris, Tame a Cat, Craft Beacon, Brew Invisibility</em>). When a team completes a task, it turns into that team's wool color and is <strong>locked out</strong> from everyone else.</p>
         <p><strong>Rewards</strong> (paid when bingo ends, ranked by <strong>most squares claimed</strong>):</p>
         <ul>
@@ -415,11 +420,13 @@
             <tr><td><code>/team info [team]</code></td><td>Everyone</td><td>Inspects team status, captain, and alive members.</td></tr>
             <tr><td><code>/tc &lt;msg&gt;</code></td><td>Everyone</td><td>Sends private chat to teammates only.</td></tr>
             <tr><td><code>/tracker</code> <span class="s1-only">SEASON 1 ONLY</span></td><td>Everyone</td><td>Gives you a tracker compass. Points at your nearest teammate; captains can also switch it to the nearest enemy captain.</td></tr>
-            <tr><td><code>/bingo</code></td><td>Everyone</td><td>Opens the 5x5 Lockout Bingo board.</td></tr>
+            <tr><td><code>/bingo</code></td><td>Everyone</td><td>Reopens the 5x5 Lockout Bingo board (only while bingo is running).</td></tr>
             <tr><td><code>/leaderboard</code></td><td>Everyone</td><td>Ranks teams by total team credits.</td></tr>
             <tr><td><code>/website</code></td><td>Everyone</td><td>Clickable link to the <a href="https://willy-money-smp-web.vercel.app/">live standings website</a>.</td></tr>
-            <tr><td><code>/bid nominate &lt;player&gt;</code></td><td>Admins</td><td>Starts a 30s auction for an unassigned player.</td></tr>
-            <tr><td><code>/bid</code></td><td>Captains</td><td>Raises the top bid on the active draft player by 5.</td></tr>
+            <tr><td><code>/bid nominate &lt;player&gt;</code></td><td>Admins</td><td>Puts an unassigned player up for auction. Captains get bid items; you get SOLD and CANCEL items.</td></tr>
+            <tr><td><code>/bid sold</code></td><td>Admins</td><td>Sells the player to the top bidder (same as the SOLD item).</td></tr>
+            <tr><td><code>/cp startday</code></td><td>Admins</td><td>Opens today's Capture Points (also <code>set</code>, <code>list</code>, <code>open</code>, <code>stopday</code>, <code>remove</code>).</td></tr>
+            <tr><td><code>/bid</code></td><td>Captains</td><td>Backup for the bid items: raises the top bid by 5.</td></tr>
             <tr><td><code>/koth start</code> / <code>stop</code> <span class="s1-only">SEASON 1 ONLY</span></td><td>Admins</td><td>Starts or stops King of the Hill at your position.</td></tr>
             <tr><td><code>/tdm start</code></td><td>Admins</td><td>Final fight: Team Deathmatch, bounty tier glows, then the winner is crowned; last team standing wins (also <code>status</code>, <code>out &lt;player&gt;</code>, <code>end</code>, <code>stop</code>).</td></tr>
             <tr><td><code>/freefall start</code></td><td>Admins</td><td>Optional: shrinks the world border to push teams together (also <code>center</code>, <code>status</code>, <code>stop</code>, <code>end</code>, <code>reset</code>).</td></tr>

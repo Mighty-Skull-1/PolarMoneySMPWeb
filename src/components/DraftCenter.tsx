@@ -65,7 +65,7 @@ export const DraftCenter: React.FC<DraftCenterProps> = ({ draft, pool, history, 
             <Gavel className="w-5 h-5 text-amber-400" /> LIVE DRAFT
           </h2>
           <p className="text-xs text-slate-400">
-            Captains type <code className="font-mono text-amber-400">/bid</code> to raise by {draft?.increment ?? 5}. Top bid when the clock hits 0 wins. One player per tier, per team.
+            Captains right-click the bid items in their hotbar (+5 / +10 / +25). No timer: the auctioneer calls SOLD. One player per tier, per team.
           </p>
         </div>
         {draft ? (
@@ -105,10 +105,8 @@ export const DraftCenter: React.FC<DraftCenterProps> = ({ draft, pool, history, 
                   <div>
                     <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Next bid</div>
                     <div className="text-xl font-black text-white tabular-nums leading-none mt-1.5">
-                      {draft.bid + draft.increment}
-                      <span className="text-xs text-slate-400 font-semibold ml-1.5">
-                        type <code className="font-mono text-amber-400">/bid</code>
-                      </span>
+                      {draft.bid + draft.increment}+
+                      <span className="text-xs text-slate-400 font-semibold ml-1.5">bid items</span>
                     </div>
                   </div>
                   <div className="min-w-0">
@@ -125,6 +123,11 @@ export const DraftCenter: React.FC<DraftCenterProps> = ({ draft, pool, history, 
                   </div>
                 </div>
 
+                {draft.endsAt <= 0 ? (
+                  <div className="mt-5 flex items-center gap-2 text-xs text-slate-400">
+                    <Timer className="w-3.5 h-3.5" /> No timer - waiting for the auctioneer to call <strong className="text-emerald-300">SOLD</strong>
+                  </div>
+                ) : (
                 <div className="mt-5">
                   <div className="flex items-center justify-between text-xs mb-1.5">
                     <span className="flex items-center gap-1.5 text-slate-400">
@@ -141,6 +144,7 @@ export const DraftCenter: React.FC<DraftCenterProps> = ({ draft, pool, history, 
                     />
                   </div>
                 </div>
+                )}
               </div>
             </div>
           ) : (
@@ -168,7 +172,7 @@ export const DraftCenter: React.FC<DraftCenterProps> = ({ draft, pool, history, 
             <ul className="space-y-2.5">
               {teams.map((team) => {
                 const captain = team.members.find((m) => m.isCaptain) ?? team.members[0];
-                const filled = new Set(team.members.map((m) => m.tier));
+                const filled = new Set<string>(team.members.map((m) => (m.tier === 'CAPTAIN' ? 'S' : m.tier)));
                 return (
                   <li key={team.id} className="flex items-center gap-3">
                     <Head name={team.captainName} size={32} className="w-8 h-8 rounded-lg" />

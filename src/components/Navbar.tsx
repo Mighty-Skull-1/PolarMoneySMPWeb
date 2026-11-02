@@ -102,8 +102,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
 
             {status?.kothActive && (
-              <span className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-rose-500/20 text-rose-300 border border-rose-500/40 animate-pulse">
-                <Flame className="w-3.5 h-3.5 text-rose-400" /> KOTH Active
+              <span className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-500/40 animate-pulse">
+                <Flame className="w-3.5 h-3.5 text-sky-300" /> Capture Points Open
               </span>
             )}
 
