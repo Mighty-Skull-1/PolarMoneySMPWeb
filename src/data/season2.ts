@@ -13,7 +13,7 @@ export const SEASON2_TIERS: Record<Season2Tier, string[]> = {
   S: [],
   A: [],
   B: [],
-  C: [],
+  C: ['galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly'],
   D: ['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar'],
 };
 

@@ -10,7 +10,7 @@ const TIER_COLOR: Record<Season2Tier, string> = {
   D: '#5fd3ff',
 };
 
-const LOCAL_SKINS = new Set(['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar']);
+const LOCAL_SKINS = new Set(['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar', 'galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly']);
 
 const SkinFigure: React.FC<{ name: string; color: string }> = ({ name, color }) => (
   <figure className="flex flex-col items-center gap-2 min-w-0">
@@ -36,7 +36,8 @@ const SkinFigure: React.FC<{ name: string; color: string }> = ({ name, color }) 
 
 export const Season2Hero: React.FC = () => {
   const revealed = SEASON2_TIER_ORDER.filter((t) => SEASON2_TIERS[t].length > 0);
-  const latest = revealed[revealed.length - 1];
+  // Tiers are revealed from D upwards, so the newest reveal is the best tier with players.
+  const latest = revealed[0];
 
   return (
     <section
