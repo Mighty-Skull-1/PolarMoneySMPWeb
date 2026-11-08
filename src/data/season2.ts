@@ -12,7 +12,7 @@ export const SEASON2_TIER_ORDER: Season2Tier[] = ['S', 'A', 'B', 'C', 'D'];
 export const SEASON2_TIERS: Record<Season2Tier, string[]> = {
   S: [],
   A: [],
-  B: [],
+  B: ['JetCreature', 'HopperNot', 'bobu2032', 'ablec'],
   C: ['galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly'],
   D: ['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar'],
 };
