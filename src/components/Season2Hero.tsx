@@ -11,7 +11,8 @@ const TIER_COLOR: Record<Season2Tier, string> = {
 };
 
 const LOCAL_SKINS = new Set(['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar', 'galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly',
-  'JetCreature', 'HopperNot', 'bobu2032', 'ablec']);
+  'JetCreature', 'HopperNot', 'bobu2032', 'ablec',
+  'Toniqp', 'MarkusAllard', 'sleepycatsz', 'Secretlife__']);
 
 const SkinFigure: React.FC<{ name: string; color: string }> = ({ name, color }) => (
   <figure className="flex flex-col items-center gap-2 min-w-0">
