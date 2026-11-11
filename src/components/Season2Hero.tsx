@@ -1,6 +1,6 @@
 import React from 'react';
 import { Snowflake, Sparkles, Lock } from 'lucide-react';
-import { SEASON2_CHANGES, SEASON2_TIERS, SEASON2_TIER_ORDER, type Season2Tier } from '../data/season2';
+import { SEASON2_CHANGES, SEASON2_SUBS, SEASON2_TIERS, SEASON2_TIER_ORDER, type Season2Tier } from '../data/season2';
 
 const TIER_COLOR: Record<Season2Tier, string> = {
   S: '#fbbf24',
@@ -9,6 +9,8 @@ const TIER_COLOR: Record<Season2Tier, string> = {
   C: '#34d399',
   D: '#5fd3ff',
 };
+
+const SUB_COLOR = '#fb923c';
 
 const LOCAL_SKINS = new Set(['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar', 'galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly',
   'JetCreature', 'HopperNot', 'bobu2032', 'ablec',
@@ -122,6 +124,39 @@ export const Season2Hero: React.FC = () => {
                 </div>
               );
             })}
+          </div>
+
+          {/* Substitutes */}
+          <div className="mt-8 flex flex-wrap items-end justify-between gap-2 mb-4">
+            <h3 className="text-lg sm:text-xl font-black text-white">SUBSTITUTES</h3>
+            <span className="text-xs font-bold" style={{ color: SUB_COLOR }}>
+              Can step in for any tier
+            </span>
+          </div>
+          <div
+            className="flex items-stretch gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl bg-[#08111f]/90 border"
+            style={{ borderColor: SEASON2_SUBS.length ? `${SUB_COLOR}55` : 'rgba(51,65,85,0.6)' }}
+          >
+            <div
+              className="flex-none w-12 sm:w-16 rounded-xl flex items-center justify-center text-sm sm:text-lg font-black"
+              style={{
+                color: SEASON2_SUBS.length ? '#04101f' : SUB_COLOR,
+                background: SEASON2_SUBS.length ? SUB_COLOR : `${SUB_COLOR}14`,
+              }}
+            >
+              SUB
+            </div>
+            {SEASON2_SUBS.length ? (
+              <div className="flex-1 min-w-0 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 items-end">
+                {SEASON2_SUBS.map((p) => (
+                  <SkinFigure key={p} name={p} color={SUB_COLOR} />
+                ))}
+              </div>
+            ) : (
+              <div className="flex-1 flex items-center gap-2 text-sm text-slate-500">
+                <Lock className="w-4 h-4" /> Revealing soon
+              </div>
+            )}
           </div>
         </div>
       </div>

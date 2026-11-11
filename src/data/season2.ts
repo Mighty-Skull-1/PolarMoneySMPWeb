@@ -17,6 +17,12 @@ export const SEASON2_TIERS: Record<Season2Tier, string[]> = {
   D: ['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar'],
 };
 
+/**
+ * Substitutes: players who can step in for anyone, whatever their tier.
+ * Leave empty to show "Revealing soon" until the list is confirmed.
+ */
+export const SEASON2_SUBS: string[] = [];
+
 /** What's changed since Season 1. */
 export const SEASON2_CHANGES: { title: string; detail: string }[] = [
   { title: '4 teams', detail: 'Down from 5 in Season 1.' },
