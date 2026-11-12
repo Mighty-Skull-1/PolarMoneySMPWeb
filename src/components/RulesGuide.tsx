@@ -210,7 +210,7 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
               <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-300">NEW</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              There are 8 points around the map and 5 open each day, 2 at a time. The team with the <strong>most players inside</strong> the zone makes progress (a tie freezes it). Hold it for <strong>4 minutes</strong> to take control, then <strong>8 more minutes</strong> to capture it for <strong>+75 credits</strong>. If another team gets the majority, your progress drains and they start their own. Only players inside the zone count; extra players don't make it faster.
+              There are 8 points around the map and 5 open each day, 2 at a time. Each zone is a <strong>16 x 16</strong> square. The team with the <strong>most players inside</strong> makes progress (a tie freezes it). Hold it for <strong>12 minutes</strong> to capture it for <strong>+75 credits</strong>. If another team gets the majority, your progress drains and they start their own. Only players inside the zone count; extra players don't make it faster.
             </p>
           </div>
 
