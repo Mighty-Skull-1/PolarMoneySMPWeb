@@ -10,7 +10,7 @@ export const SEASON2_TIER_ORDER: Season2Tier[] = ['S', 'A', 'B', 'C', 'D'];
 
 /** Revealed players per tier. An empty list shows as "revealing soon". */
 export const SEASON2_TIERS: Record<Season2Tier, string[]> = {
-  S: [],
+  S: ['Valdfilt'],
   A: ['Toniqp', 'MarkusAllard', 'sleepycatsz', 'Secretlife__'],
   B: ['JetCreature', 'HopperNot', 'bobu2032', 'ablec'],
   C: ['galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly'],
@@ -22,6 +22,9 @@ export const SEASON2_TIERS: Record<Season2Tier, string[]> = {
  * Leave empty to show "Revealing soon" until the list is confirmed.
  */
 export const SEASON2_SUBS: string[] = [];
+
+/** A tier that's still being revealed one player at a time (shows a "more coming" slot). */
+export const SEASON2_TIER_IN_PROGRESS: Season2Tier | null = 'S';
 
 /** What's changed since Season 1. */
 export const SEASON2_CHANGES: { title: string; detail: string }[] = [

@@ -1,6 +1,13 @@
 import React from 'react';
 import { Snowflake, Sparkles, Lock } from 'lucide-react';
-import { SEASON2_CHANGES, SEASON2_SUBS, SEASON2_TIERS, SEASON2_TIER_ORDER, type Season2Tier } from '../data/season2';
+import {
+  SEASON2_CHANGES,
+  SEASON2_SUBS,
+  SEASON2_TIERS,
+  SEASON2_TIER_IN_PROGRESS,
+  SEASON2_TIER_ORDER,
+  type Season2Tier,
+} from '../data/season2';
 
 const TIER_COLOR: Record<Season2Tier, string> = {
   S: '#fbbf24',
@@ -14,7 +21,8 @@ const SUB_COLOR = '#fb923c';
 
 const LOCAL_SKINS = new Set(['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar', 'galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly',
   'JetCreature', 'HopperNot', 'bobu2032', 'ablec',
-  'Toniqp', 'MarkusAllard', 'sleepycatsz', 'Secretlife__']);
+  'Toniqp', 'MarkusAllard', 'sleepycatsz', 'Secretlife__',
+  'Valdfilt']);
 
 const SkinFigure: React.FC<{ name: string; color: string }> = ({ name, color }) => (
   <figure className="flex flex-col items-center gap-2 min-w-0">
@@ -89,7 +97,10 @@ export const Season2Hero: React.FC = () => {
             <h3 className="text-lg sm:text-xl font-black text-white">SEASON 2 DRAFT TIERS</h3>
             {latest && (
               <span className="text-xs font-bold text-sky-300">
-                Latest reveal: Tier {latest} · {revealed.length} of {SEASON2_TIER_ORDER.length} revealed
+                Latest reveal: Tier {latest} ·{' '}
+                {SEASON2_TIER_IN_PROGRESS === latest
+                  ? `more Tier ${latest} players coming soon`
+                  : `${revealed.length} of ${SEASON2_TIER_ORDER.length} revealed`}
               </span>
             )}
           </div>
@@ -115,6 +126,19 @@ export const Season2Hero: React.FC = () => {
                       {players.map((p) => (
                         <SkinFigure key={p} name={p} color={color} />
                       ))}
+                      {SEASON2_TIER_IN_PROGRESS === tier && (
+                        <div className="flex flex-col items-center justify-end gap-2 h-full min-h-[9rem] sm:min-h-[11rem]">
+                          <div
+                            className="flex-1 w-full max-w-[7rem] rounded-xl border border-dashed flex items-center justify-center text-4xl font-black"
+                            style={{ borderColor: `${color}66`, color: `${color}aa` }}
+                          >
+                            ?
+                          </div>
+                          <span className="text-xs font-bold text-slate-400 flex items-center gap-1">
+                            <Lock className="w-3.5 h-3.5" /> More soon
+                          </span>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div className="flex-1 flex items-center gap-2 text-sm text-slate-500">
