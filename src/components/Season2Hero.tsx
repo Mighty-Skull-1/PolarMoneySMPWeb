@@ -8,6 +8,7 @@ import {
   SEASON2_TIER_ORDER,
   type Season2Tier,
 } from '../data/season2';
+import { BiddingCountdown } from './BiddingCountdown';
 
 const TIER_COLOR: Record<Season2Tier, string> = {
   S: '#fbbf24',
@@ -79,6 +80,8 @@ export const Season2Hero: React.FC = () => {
             list and a new draft. The tiers are being revealed one at a time.
           </p>
         </div>
+
+        <BiddingCountdown />
 
         {/* What's new */}
         <ul className="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-3">

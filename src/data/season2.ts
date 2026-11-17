@@ -26,6 +26,13 @@ export const SEASON2_SUBS: string[] = ['m_gamer11', 'Arshzas', 'AuroraTiles', 'e
 /** A tier that's still being revealed one player at a time (shows a "more coming" slot). */
 export const SEASON2_TIER_IN_PROGRESS: Season2Tier | null = 'S';
 
+/**
+ * When the captains' bidding starts, as an ISO time with its UK offset,
+ * e.g. '2026-12-05T19:00:00Z' (GMT, winter) or '2027-04-10T19:00:00+01:00' (BST, summer).
+ * Leave null to show "Date coming soon" on the countdown.
+ */
+export const SEASON2_BIDDING_AT: string | null = null;
+
 /** What's changed since Season 1. */
 export const SEASON2_CHANGES: { title: string; detail: string }[] = [
   { title: '4 teams', detail: 'Down from 5 in Season 1.' },
