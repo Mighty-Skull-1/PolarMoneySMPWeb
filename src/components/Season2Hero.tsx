@@ -23,7 +23,7 @@ const SUB_COLOR = '#fb923c';
 const LOCAL_SKINS = new Set(['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar', 'galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly',
   'JetCreature', 'HopperNot', 'bobu2032', 'ablec',
   'Toniqp', 'MarkusAllard', 'sleepycatsz', 'Secretlife__',
-  'Valdfilt', 'Willysmannen', 'NightDay_',
+  'Valdfilt', 'Willysmannen', 'NightDay_', 'ThuulBot',
   'm_gamer11', 'Arshzas', 'AuroraTiles', 'ex1l_', 'Vryqs']);
 
 const SkinFigure: React.FC<{ name: string; color: string }> = ({ name, color }) => (

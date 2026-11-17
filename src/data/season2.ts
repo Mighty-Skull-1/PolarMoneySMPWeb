@@ -10,7 +10,7 @@ export const SEASON2_TIER_ORDER: Season2Tier[] = ['S', 'A', 'B', 'C', 'D'];
 
 /** Revealed players per tier. An empty list shows as "revealing soon". */
 export const SEASON2_TIERS: Record<Season2Tier, string[]> = {
-  S: ['Valdfilt', 'Willysmannen', 'NightDay_'],
+  S: ['Valdfilt', 'Willysmannen', 'NightDay_', 'ThuulBot'],
   A: ['Toniqp', 'MarkusAllard', 'sleepycatsz', 'Secretlife__'],
   B: ['JetCreature', 'HopperNot', 'bobu2032', 'ablec'],
   C: ['galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly'],
@@ -24,7 +24,7 @@ export const SEASON2_TIERS: Record<Season2Tier, string[]> = {
 export const SEASON2_SUBS: string[] = ['m_gamer11', 'Arshzas', 'AuroraTiles', 'ex1l_', 'Vryqs'];
 
 /** A tier that's still being revealed one player at a time (shows a "more coming" slot). */
-export const SEASON2_TIER_IN_PROGRESS: Season2Tier | null = 'S';
+export const SEASON2_TIER_IN_PROGRESS: Season2Tier | null = null;
 
 /**
  * When the captains' bidding starts, as an ISO time with its UK offset,
