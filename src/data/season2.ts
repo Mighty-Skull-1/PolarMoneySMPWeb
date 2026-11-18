@@ -31,7 +31,7 @@ export const SEASON2_TIER_IN_PROGRESS: Season2Tier | null = null;
  * e.g. '2026-12-05T19:00:00Z' (GMT, winter) or '2027-04-10T19:00:00+01:00' (BST, summer).
  * Leave null to show "Date coming soon" on the countdown.
  */
-// Friday 27 November, 8pm US Central (CST) = 2am Saturday UK.
+// Friday 27 November, 8pm US Central (CST). Shown on the site in US time (CT / ET).
 export const SEASON2_BIDDING_AT: string | null = '2026-11-28T02:00:00Z';
 
 /**

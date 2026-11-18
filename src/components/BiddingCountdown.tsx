@@ -89,7 +89,6 @@ export const BiddingCountdown: React.FC = () => {
       <p className="relative mt-5 text-sm text-slate-200 font-semibold flex items-center justify-center gap-1.5">
         <CalendarClock className="w-4 h-4 text-amber-300 flex-none" /> {when}
       </p>
-      {zones && <p className="relative mt-1 text-sm text-slate-300">{zones.uk}</p>}
       {otherLine && (
         <p className="relative mt-2 text-xs sm:text-sm text-slate-400 flex items-center justify-center gap-1.5">
           {other.key === 'bid' ? <Gavel className="w-3.5 h-3.5 flex-none" /> : <Rocket className="w-3.5 h-3.5 flex-none" />} {otherLine}
