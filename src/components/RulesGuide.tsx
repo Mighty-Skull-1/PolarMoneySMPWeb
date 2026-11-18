@@ -23,6 +23,7 @@ const SERVER_RULES: ServerRule[] = [
   { title: 'Use common sense', detail: "No loopholes and no exploits. If it feels like it breaks the spirit of the game, don't do it." },
   { title: 'No cross-team cheating', detail: 'Teams working together unfairly or helping another team cheat will be fined.' },
   { title: 'Deathmatch: no focusing one team', detail: 'In the Team Deathmatch you can fight whoever you want, but you cannot target one team for the whole deathmatch. Doing it gets a fine.' },
+  { title: 'No F3 pie chart', detail: 'Using the F3 debug pie chart to find chests, bases or anything else is not allowed. If you are found using it, you will get a fine.' },
   { title: 'No draining' },
   { title: 'No ice or sponges', detail: 'Ice and sponges cannot be used.' },
   { title: 'No debuffs', detail: 'Do not use debuff potions or effects on other players.' },
