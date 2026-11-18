@@ -231,7 +231,7 @@ export const RulesGuide: React.FC<RulesGuideProps> = ({ banned }) => {
               <h4 className="font-bold text-white text-sm">5x5 Lockout Bingo</h4>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              25 survival challenges, first team to finish one claims it. The board opens for everyone at once when bingo starts (no peeking early). When bingo ends, most squares wins: <strong>+150 / +120 / +100 / +50</strong> for 1st to 4th.
+              A 5x5 board of survival tasks, revealed to everyone at the same moment when bingo starts. It's lockout: the first team to complete a task claims the square and nobody else can get it. Items you had before bingo started don't count. When bingo ends, most squares wins: <strong>+150 / +120 / +100 / +50</strong> for 1st to 4th.
             </p>
           </div>
 
