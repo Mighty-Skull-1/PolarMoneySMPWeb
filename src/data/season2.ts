@@ -31,7 +31,8 @@ export const SEASON2_TIER_IN_PROGRESS: Season2Tier | null = null;
  * e.g. '2026-12-05T19:00:00Z' (GMT, winter) or '2027-04-10T19:00:00+01:00' (BST, summer).
  * Leave null to show "Date coming soon" on the countdown.
  */
-export const SEASON2_BIDDING_AT: string | null = null;
+// Friday 27 November, 8pm US Central (CST) = 2am Saturday UK.
+export const SEASON2_BIDDING_AT: string | null = '2026-11-28T02:00:00Z';
 
 /**
  * When the Season 2 server opens. 26 December 2026 (GMT, so 'Z').
