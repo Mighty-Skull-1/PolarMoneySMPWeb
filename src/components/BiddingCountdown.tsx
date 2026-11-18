@@ -26,7 +26,7 @@ const usAndUk = (ms: number) => {
   const uk = d.toLocaleString('en-GB', {
     timeZone: 'Europe/London', weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', hour12: true,
   });
-  return { us: `${day} · ${t('America/Chicago')} CT / ${t('America/New_York')} ET`, uk: `${uk} UK time` };
+  return { us: `${day} · ${t('America/Chicago')} CT / ${t('America/New_York')} EST`, uk: `${uk} UK time` };
 };
 
 type Event = { key: 'bid' | 'start'; at: number | null; withTime: boolean };
@@ -89,6 +89,7 @@ export const BiddingCountdown: React.FC = () => {
       <p className="relative mt-5 text-sm text-slate-200 font-semibold flex items-center justify-center gap-1.5">
         <CalendarClock className="w-4 h-4 text-amber-300 flex-none" /> {when}
       </p>
+      {zones && <p className="relative mt-1 text-sm text-slate-300">{zones.uk}</p>}
       {otherLine && (
         <p className="relative mt-2 text-xs sm:text-sm text-slate-400 flex items-center justify-center gap-1.5">
           {other.key === 'bid' ? <Gavel className="w-3.5 h-3.5 flex-none" /> : <Rocket className="w-3.5 h-3.5 flex-none" />} {otherLine}
