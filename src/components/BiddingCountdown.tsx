@@ -18,15 +18,12 @@ const fmt = (ms: number, withTime: boolean) =>
     ? { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }
     : { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/London' });
 
-/** e.g. "Friday, November 27 · 8:00 PM CT / 9:00 PM ET" and "Sat 28 Nov, 2:00 am UK". */
+/** e.g. "Friday, November 27 · 2:00 PM EST" and "7:00 PM UK · 8:00 PM CET". */
 const usAndUk = (ms: number) => {
   const d = new Date(ms);
-  const day = d.toLocaleDateString('en-US', { timeZone: 'America/Chicago', weekday: 'long', month: 'long', day: 'numeric' });
+  const day = d.toLocaleDateString('en-US', { timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric' });
   const t = (tz: string) => d.toLocaleTimeString('en-US', { timeZone: tz, hour: 'numeric', minute: '2-digit' });
-  const uk = d.toLocaleString('en-GB', {
-    timeZone: 'Europe/London', weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', hour12: true,
-  });
-  return { us: `${day} · ${t('America/Chicago')} CT / ${t('America/New_York')} EST`, uk: `${uk} UK time` };
+  return { us: `${day} · ${t('America/New_York')} EST`, uk: `${t('Europe/London')} UK · ${t('Europe/Berlin')} CET` };
 };
 
 type Event = { key: 'bid' | 'start'; at: number | null; withTime: boolean };
