@@ -175,7 +175,7 @@ export const Season2Hero: React.FC = () => {
               SUB
             </div>
             {SEASON2_SUBS.length ? (
-              <div className="flex-1 min-w-0 grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 items-end">
+              <div className={`flex-1 min-w-0 grid grid-cols-2 ${SEASON2_SUBS.length > 4 ? 'sm:grid-cols-5' : 'sm:grid-cols-4'} gap-3 sm:gap-4 items-end`}>
                 {SEASON2_SUBS.map((p) => (
                   <SkinFigure key={p} name={p} color={SUB_COLOR} />
                 ))}
