@@ -12,7 +12,7 @@ export const SEASON2_TIER_ORDER: Season2Tier[] = ['S', 'A', 'B', 'C', 'D'];
 export const SEASON2_TIERS: Record<Season2Tier, string[]> = {
   S: ['Valdfilt', 'Willysmannen', 'NightDay_', 'ThuulBot'],
   A: ['Toniqp', 'MarkusAllard', 'sleepycatsz', 'Secretlife__'],
-  B: ['JetCreature', 'HopperNot', 'bobu2032', 'ablec'],
+  B: ['JetCreature', 'Arshzas', 'bobu2032', 'ablec'],
   C: ['galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly'],
   D: ['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar'],
 };
@@ -21,7 +21,7 @@ export const SEASON2_TIERS: Record<Season2Tier, string[]> = {
  * Substitutes: players who can step in for anyone, whatever their tier.
  * Leave empty to show "Revealing soon" until the list is confirmed.
  */
-export const SEASON2_SUBS: string[] = ['m_gamer11', 'Arshzas', 'AuroraTiles', 'ex1l_', 'Vryqs'];
+export const SEASON2_SUBS: string[] = ['m_gamer11', 'AuroraTiles', 'ex1l_', 'Vryqs'];
 
 /** A tier that's still being revealed one player at a time (shows a "more coming" slot). */
 export const SEASON2_TIER_IN_PROGRESS: Season2Tier | null = null;
