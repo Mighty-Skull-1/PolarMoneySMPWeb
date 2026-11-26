@@ -15,6 +15,7 @@ import type {
   PlayerTier,
   PoolPlayer,
   SMPPhase,
+  StaffMember,
   TeamData,
 } from '../types/tournament';
 
@@ -176,6 +177,11 @@ export function decodePayload(raw: any): LeaderboardResponse {
       ? (raw.ban as unknown[][]).map(
           (b): BannedItem => ({ name: String(b[0] ?? ''), reason: String(b[1] ?? ''), alternative: String(b[2] ?? '') }),
         )
+      : undefined,
+    staff: Array.isArray(raw.st)
+      ? (raw.st as unknown[][])
+          .filter((p) => Array.isArray(p) && typeof p[0] === 'string' && (p[1] === 'OWNER' || p[1] === 'ADMIN'))
+          .map((p): StaffMember => ({ name: String(p[0]), rank: p[1] as StaffMember['rank'] }))
       : undefined,
     serverAddress: typeof raw.ip === 'string' && /^[A-Za-z0-9.:-]{3,100}$/.test(raw.ip) ? raw.ip : undefined,
   };

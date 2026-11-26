@@ -11,6 +11,7 @@ topic can't be used to post fake standings. Teams, tiers and the draft are manag
 
 - Change the server address, topic or key in `src/config.ts`.
 - In game: `/smp webkey` shows the server's public key, `/smp sync` pushes an update now.
+- The "Run by" section on the Season 2 page lists everyone with `/rank set <player> owner|admin` (needs plugin 3.6.0+). It's hidden while nobody has a rank.
 
 ## Develop
 

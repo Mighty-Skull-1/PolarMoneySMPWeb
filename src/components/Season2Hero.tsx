@@ -9,6 +9,9 @@ import {
   type Season2Tier,
 } from '../data/season2';
 import { BiddingCountdown } from './BiddingCountdown';
+import { StaffSection } from './StaffSection';
+import { skinUrl } from '../lib/skins';
+import type { StaffMember } from '../types/tournament';
 
 const TIER_COLOR: Record<Season2Tier, string> = {
   S: '#fbbf24',
@@ -20,11 +23,6 @@ const TIER_COLOR: Record<Season2Tier, string> = {
 
 const SUB_COLOR = '#fb923c';
 
-const LOCAL_SKINS = new Set(['LwkLucky', 'osama_343', 'Slimeprince_', '0ensar', 'galexyworld', 'Myn0x_', 'NaudxNeo', 'itzghuly',
-  'JetCreature', 'HopperNot', 'bobu2032', 'ablec',
-  'Toniqp', 'MarkusAllard', 'sleepycatsz', 'Secretlife__',
-  'Valdfilt', 'Willysmannen', 'NightDay_', 'ThuulBot',
-  'm_gamer11', 'Arshzas', 'AuroraTiles', 'ex1l_', 'Vryqs']);
 
 const SkinFigure: React.FC<{ name: string; color: string }> = ({ name, color }) => (
   <figure className="flex flex-col items-center gap-2 min-w-0">
@@ -35,7 +33,7 @@ const SkinFigure: React.FC<{ name: string; color: string }> = ({ name, color }) 
         aria-hidden
       />
       <img
-        src={LOCAL_SKINS.has(name) ? `./skins/${name}.png` : `https://mc-heads.net/body/${encodeURIComponent(name)}/120`}
+        src={skinUrl(name)}
         alt={`${name}'s Minecraft skin`}
         loading="lazy"
         className="relative h-full w-auto object-contain drop-shadow-[0_0_14px_rgba(95,211,255,0.45)]"
@@ -48,7 +46,7 @@ const SkinFigure: React.FC<{ name: string; color: string }> = ({ name, color }) 
   </figure>
 );
 
-export const Season2Hero: React.FC = () => {
+export const Season2Hero: React.FC<{ staff?: StaffMember[] }> = ({ staff }) => {
   const revealed = SEASON2_TIER_ORDER.filter((t) => SEASON2_TIERS[t].length > 0);
   // Tiers are revealed from D upwards, so the newest reveal is the best tier with players.
   const latest = revealed[0];
@@ -80,6 +78,8 @@ export const Season2Hero: React.FC = () => {
             list and a new draft. The tiers are being revealed one at a time.
           </p>
         </div>
+
+        <StaffSection staff={staff} />
 
         <BiddingCountdown />
 

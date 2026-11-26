@@ -78,10 +78,19 @@ export interface LeaderboardResponse {
   serverAddress?: string;
   /** Items banned on the server (/banneditems). Undefined = server hasn't sent the list. */
   banned?: BannedItem[];
+  /** Server staff set in game with /rank. Undefined = server hasn't sent the list. */
+  staff?: StaffMember[];
 }
 
 export interface BannedItem {
   name: string;
   reason: string;
   alternative: string;
+}
+
+export type StaffRank = 'OWNER' | 'ADMIN';
+
+export interface StaffMember {
+  name: string;
+  rank: StaffRank;
 }
