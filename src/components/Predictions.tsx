@@ -14,7 +14,7 @@ interface Summary {
 type View = 'all' | 'viewers' | 'players';
 const MY_VOTE_KEY = 'polar_prediction_v1';
 
-function loadMyVote(): { name: string; team: PredictionTeam } | null {
+function loadMyVote(): { name: string; team: PredictionTeam; token?: string } | null {
   try {
     const v = JSON.parse(localStorage.getItem(MY_VOTE_KEY) ?? 'null');
     return v && typeof v.name === 'string' && typeof v.team === 'string' ? v : null;
@@ -23,7 +23,7 @@ function loadMyVote(): { name: string; team: PredictionTeam } | null {
   }
 }
 
-function saveMyVote(v: { name: string; team: PredictionTeam }) {
+function saveMyVote(v: { name: string; team: PredictionTeam; token?: string }) {
   try {
     localStorage.setItem(MY_VOTE_KEY, JSON.stringify(v));
   } catch {
@@ -110,13 +110,13 @@ export const Predictions: React.FC<{ liveTeams: TeamData[] }> = ({ liveTeams }) 
       const r = await fetch('/api/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name.trim(), team: picked }),
+        body: JSON.stringify({ name: name.trim(), team: picked, token: myVote?.token }),
       });
       const body = await r.json().catch(() => ({}));
       if (!r.ok) {
         setMsg({ ok: false, text: body.error ?? 'Something went wrong. Try again.' });
       } else {
-        const v = { name: body.name as string, team: body.team as PredictionTeam };
+        const v = { name: body.name as string, team: body.team as PredictionTeam, token: (body.token as string) ?? myVote?.token };
         saveMyVote(v);
         setMyVote(v);
         setSummary(body);

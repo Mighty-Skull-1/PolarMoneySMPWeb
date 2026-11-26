@@ -5,7 +5,7 @@
 // Votes live in one JSON file in the site's Vercel Blob store (polar-predictions).
 // Writes use the file's ETag, so two people voting at the same moment can't overwrite each other.
 import { get, put, BlobPreconditionFailedError } from '@vercel/blob';
-import { createHmac } from 'node:crypto';
+import { createHmac, randomBytes } from 'node:crypto';
 
 // Preview deployments use their own file and are always open, so voting can be tested without touching real votes.
 const IS_PROD = process.env.VERCEL_ENV === 'production';
@@ -21,7 +21,7 @@ const CLOSES_AT = Date.parse('2026-12-26T00:00:00Z'); // the day the server star
 const MAX_NAMES_PER_IP = 3;
 const NAME_RE = /^[A-Za-z0-9_.]{2,32}$/;
 
-interface Vote { name: string; team: TeamKey; ip: string; at: number }
+interface Vote { name: string; team: TeamKey; ip: string; tok?: string; at: number }
 interface State { votes: Record<string, Vote>; updatedAt: number }
 
 function json(body: unknown, status = 200, cache = 'no-store') {
@@ -65,6 +65,10 @@ function summary(state: State) {
   };
 }
 
+function keyed(value: string): string {
+  return createHmac('sha256', process.env.BLOB_READ_WRITE_TOKEN ?? 'polar').update(value).digest('hex').slice(0, 16);
+}
+
 function clientKey(request: Request): string {
   const ip = (request.headers.get('x-forwarded-for') ?? '').split(',')[0].trim() || request.headers.get('x-real-ip') || 'unknown';
   // Only a keyed hash is stored, never the address itself.
@@ -78,7 +82,7 @@ export async function GET(request: Request) {
     const fake = new Request(request.url, {
       method: 'POST',
       headers: request.headers,
-      body: JSON.stringify({ name: url.searchParams.get('testvote'), team: url.searchParams.get('team') }),
+      body: JSON.stringify({ name: url.searchParams.get('testvote'), team: url.searchParams.get('team'), token: url.searchParams.get('token') ?? undefined }),
     });
     return POST(fake);
   }
@@ -95,7 +99,7 @@ export async function POST(request: Request) {
   if (now < OPENS_AT) return json({ error: 'Predictions open after the draft.' }, 403);
   if (now >= CLOSES_AT) return json({ error: 'Predictions are locked - the season has started.' }, 403);
 
-  let body: { name?: unknown; team?: unknown };
+  let body: { name?: unknown; team?: unknown; token?: unknown };
   try {
     body = await request.json();
   } catch {
@@ -108,18 +112,22 @@ export async function POST(request: Request) {
 
   const key = name.toLowerCase();
   const ip = clientKey(request);
+  // The browser keeps a secret token from its first vote, so people can change their pick even if their IP changes.
+  const sentToken = typeof body.token === 'string' && /^[a-f0-9]{32}$/.test(body.token) ? body.token : null;
+  const token = sentToken ?? randomBytes(16).toString('hex');
 
   for (let attempt = 0; attempt < 6; attempt++) {
     const { state, etag } = await load(true);
     const existing = state.votes[key];
-    if (existing && existing.ip !== ip) {
+    const sameVoter = !!existing && (existing.ip === ip || (!!sentToken && existing.tok === keyed(sentToken)));
+    if (existing && !sameVoter) {
       return json({ error: `${existing.name} has already voted. If that's you, change your vote on the device you voted from.` }, 409);
     }
     if (!existing) {
       const fromThisIp = Object.values(state.votes).filter((v) => v.ip === ip).length;
       if (fromThisIp >= MAX_NAMES_PER_IP) return json({ error: 'Too many votes from this connection.' }, 429);
     }
-    state.votes[key] = { name, team, ip, at: now };
+    state.votes[key] = { name, team, ip, tok: keyed(token), at: now };
     state.updatedAt = now;
     try {
       await put(PATH, JSON.stringify(state), {
@@ -129,7 +137,7 @@ export async function POST(request: Request) {
         cacheControlMaxAge: 60,
         ...(etag ? { ifMatch: etag } : { allowOverwrite: false }),
       });
-      return json({ ok: true, name, team, changed: !!existing && existing.team !== team, ...summary(state) });
+      return json({ ok: true, name, team, token, changed: !!existing && existing.team !== team, ...summary(state) });
     } catch (e) {
       // Someone else voted at the same moment: reload and try again.
       if (e instanceof BlobPreconditionFailedError || /already exists|precondition/i.test(String((e as Error)?.message))) {
