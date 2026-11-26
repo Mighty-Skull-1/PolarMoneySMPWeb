@@ -18,12 +18,12 @@ const fmt = (ms: number, withTime: boolean) =>
     ? { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }
     : { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/London' });
 
-/** e.g. "Friday, November 27 · 2:00 PM EST" and "7:00 PM UK · 8:00 PM CET". */
-const usAndUk = (ms: number) => {
+/** e.g. "Friday 27 November" and "5:00 pm UK · 6:00 pm CET". */
+const ukAndCet = (ms: number) => {
   const d = new Date(ms);
-  const day = d.toLocaleDateString('en-US', { timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric' });
-  const t = (tz: string) => d.toLocaleTimeString('en-US', { timeZone: tz, hour: 'numeric', minute: '2-digit' });
-  return { us: `${day} · ${t('America/New_York')} EST`, uk: `${t('Europe/London')} UK · ${t('Europe/Berlin')} CET` };
+  const day = d.toLocaleDateString('en-GB', { timeZone: 'Europe/London', weekday: 'long', month: 'long', day: 'numeric' });
+  const t = (tz: string) => d.toLocaleTimeString('en-GB', { timeZone: tz, hour: 'numeric', minute: '2-digit', hour12: true });
+  return { day, times: `${t('Europe/London')} UK · ${t('Europe/Berlin')} CET` };
 };
 
 type Event = { key: 'bid' | 'start'; at: number | null; withTime: boolean };
@@ -57,13 +57,13 @@ export const BiddingCountdown: React.FC = () => {
   const title = isBid
     ? (live ? 'BIDDING IS LIVE' : 'BIDDING STARTS IN')
     : (live ? 'SEASON 2 IS LIVE' : 'SEASON 2 STARTS IN');
-  const zones = main.key === 'bid' && main.at !== null ? usAndUk(main.at) : null;
-  const when = zones ? zones.us : main.at === null
+  const zones = main.key === 'bid' && main.at !== null ? ukAndCet(main.at) : null;
+  const when = zones ? zones.day : main.at === null
     ? 'Date coming soon. Keep an eye on the Discord.'
     : fmt(main.at, main.withTime) + (main.withTime ? '' : ' · start time TBA');
 
   const otherLine = other.key === 'bid'
-    ? (other.at === null ? "Captains' bidding: date coming soon" : other.at > now ? `Captains' bidding: ${usAndUk(other.at).us}` : null)
+    ? (other.at === null ? "Captains' bidding: date coming soon" : other.at > now ? `Captains' bidding: ${ukAndCet(other.at).day} · ${ukAndCet(other.at).times}` : null)
     : (other.at === null ? null : `Season 2 starts: ${fmt(other.at, other.withTime)}${other.withTime ? '' : ' (time TBA)'}`);
 
   return (
@@ -86,7 +86,7 @@ export const BiddingCountdown: React.FC = () => {
       <p className="relative mt-5 text-sm text-slate-200 font-semibold flex items-center justify-center gap-1.5">
         <CalendarClock className="w-4 h-4 text-amber-300 flex-none" /> {when}
       </p>
-      {zones && <p className="relative mt-1 text-sm text-slate-300">{zones.uk}</p>}
+      {zones && <p className="relative mt-1 text-sm text-slate-300">{zones.times}</p>}
       {otherLine && (
         <p className="relative mt-2 text-xs sm:text-sm text-slate-400 flex items-center justify-center gap-1.5">
           {other.key === 'bid' ? <Gavel className="w-3.5 h-3.5 flex-none" /> : <Rocket className="w-3.5 h-3.5 flex-none" />} {otherLine}

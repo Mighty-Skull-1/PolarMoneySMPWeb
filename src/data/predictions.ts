@@ -1,7 +1,7 @@
 // "Who will win?" predictions. Keep the two times in step with api/predict.ts.
 
-/** Voting opens after the bidding (Fri 27 Nov, 10:30pm UK). */
-export const PREDICTIONS_OPEN_AT = '2026-11-27T22:30:00Z';
+/** Voting opens after the bidding (Fri 27 Nov, 7:30pm UK). */
+export const PREDICTIONS_OPEN_AT = '2026-11-27T19:30:00Z';
 /** Voting locks when the server starts. */
 export const PREDICTIONS_CLOSE_AT = '2026-12-26T00:00:00Z';
 
