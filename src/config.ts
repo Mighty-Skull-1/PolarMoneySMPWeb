@@ -35,7 +35,7 @@ export const SIGNING_PUBLIC_KEY: string =
  */
 export const ADMIN_PASSWORD_SALT = 'wmsmp-admin-v1';
 export const ADMIN_PASSWORD_ITERATIONS = 310_000;
-export const ADMIN_PASSWORD_HASH = 'b8c00a9c6f0112f42e27015b6c9ea5c0554168043b2167ee0889cfbecb8fef8a';
+export const ADMIN_PASSWORD_HASH = 'ce1490b7028e4ae2707e3b5cc884319d280b94d9f1a4ac74767a5e004420f0b4';
 
 /** An update older than this (the plugin sends one at least every minute) means the feed is stale. */
 export const STALE_AFTER_MS = 150_000;
