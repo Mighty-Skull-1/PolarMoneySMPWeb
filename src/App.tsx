@@ -10,6 +10,7 @@ import { RulesGuide } from './components/RulesGuide';
 import { AdminPasswordModal } from './components/AdminPasswordModal';
 import { Season2Hero } from './components/Season2Hero';
 import { Season1Results } from './components/Season1Results';
+import { Predictions } from './components/Predictions';
 import { SEASON2_DATA_FROM } from './data/season2';
 import { isAdminUnlocked } from './lib/admin';
 import type { LeaderboardResponse } from './types/tournament';
@@ -280,6 +281,8 @@ export function App() {
         {showDraft && (
           <DraftCenter draft={draft} pool={pool} history={history} teams={teams} clockSkewMs={clockSkewMs} />
         )}
+
+        {!isDemo && <Predictions liveTeams={live?.data.teams ?? []} />}
 
         {/* During the draft everyone has the same credits, so the podium only means something afterwards. */}
         {!q && teams.length >= 3 && data.status.phase !== 'DRAFT' && <Podium teams={teams} onSelectTeam={(team) => setSelectedTeamId(team.id)} />}
