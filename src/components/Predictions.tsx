@@ -130,6 +130,9 @@ export const Predictions: React.FC<{ liveTeams: TeamData[] }> = ({ liveTeams }) 
     }
   };
 
+  // Hidden until voting opens, so it can't give away the team colours before they're announced.
+  if (beforeOpen) return null;
+
   return (
     <section
       aria-labelledby="predict-heading"

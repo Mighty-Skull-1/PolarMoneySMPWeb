@@ -282,8 +282,6 @@ export function App() {
           <DraftCenter draft={draft} pool={pool} history={history} teams={teams} clockSkewMs={clockSkewMs} />
         )}
 
-        {!isDemo && <Predictions liveTeams={live?.data.teams ?? []} />}
-
         {/* During the draft everyone has the same credits, so the podium only means something afterwards. */}
         {!q && teams.length >= 3 && data.status.phase !== 'DRAFT' && <Podium teams={teams} onSelectTeam={(team) => setSelectedTeamId(team.id)} />}
 
@@ -321,6 +319,8 @@ export function App() {
             </p>
           </div>
         )}
+
+        {!isDemo && <Predictions liveTeams={live?.data.teams ?? []} />}
 
         <Season1Results />
 
