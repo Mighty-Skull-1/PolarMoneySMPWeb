@@ -34,7 +34,7 @@ function saveMyVote(v: { name: string; team: PredictionTeam; token?: string }) {
 const fmt = (iso: string) =>
   new Date(iso).toLocaleString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
 
-/** "Who will win Polar Money SMP?" - viewers and players pick a team before the season starts. */
+/** "Who will win Polar Money SMP Season 2?" - viewers and players pick a team before the season starts. */
 export const Predictions: React.FC<{ liveTeams: TeamData[] }> = ({ liveTeams }) => {
   const [now, setNow] = useState(() => Date.now());
   const [summary, setSummary] = useState<Summary | null>(null);
@@ -141,7 +141,7 @@ export const Predictions: React.FC<{ liveTeams: TeamData[] }> = ({ liveTeams }) 
       <div className="text-center">
         <p className="text-[11px] sm:text-xs font-bold tracking-[0.3em] uppercase text-sky-300 pl-[0.3em]">Predictions</p>
         <h2 id="predict-heading" className="mt-1 text-2xl sm:text-3xl font-black text-white">
-          Who will win Polar Money SMP?
+          Who will win Polar Money SMP Season 2?
         </h2>
         <p className="mt-2 text-sm text-slate-400">
           {beforeOpen
