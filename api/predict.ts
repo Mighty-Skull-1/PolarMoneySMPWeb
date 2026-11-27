@@ -14,7 +14,7 @@ const TEAMS = ['red', 'blue', 'green', 'pink'] as const;
 type TeamKey = (typeof TEAMS)[number];
 
 // Keep these two in step with src/data/predictions.ts.
-const OPENS_AT = IS_PROD ? Date.parse('2026-11-27T19:30:00Z') : 0; // Fri 27 Nov, 7:30pm UK (after the bidding)
+const OPENS_AT = IS_PROD ? Date.parse('2026-11-27T18:40:00Z') : 0; // Fri 27 Nov, 6:40pm UK (after the bidding)
 const CLOSES_AT = Date.parse('2026-12-26T00:00:00Z'); // the day the server starts
 
 /** One device/connection can vote for at most this many different names (stops ballot stuffing). */
