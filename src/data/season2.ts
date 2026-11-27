@@ -21,7 +21,7 @@ export const SEASON2_TIERS: Record<Season2Tier, string[]> = {
  * Substitutes: players who can step in for anyone, whatever their tier.
  * Leave empty to show "Revealing soon" until the list is confirmed.
  */
-export const SEASON2_SUBS: string[] = ['m_gamer11', 'AuroraTiles', 'ex1l_', 'Vryqs'];
+export const SEASON2_SUBS: string[] = ['AuroraTiles', 'Vryqs'];
 
 /** A tier that's still being revealed one player at a time (shows a "more coming" slot). */
 export const SEASON2_TIER_IN_PROGRESS: Season2Tier | null = null;
