@@ -17,7 +17,7 @@ interface ServerRule {
 
 // Keep in sync with the "Server Rules" list in public/guide.html.
 const SERVER_RULES: ServerRule[] = [
-  { title: 'No unfair advantages', detail: 'No mods or clients that give you an edge — health indicators, player trackers, minimaps and similar are all banned.' },
+  { title: 'Banned mods, packs and clients', detail: "No minimaps, world maps, Freecam, X-ray packs or X-ray mods. No hacked clients or any mod that gives you an unfair advantage. If you're unsure about a mod, ask an admin first." },
   { title: 'No stream sniping', detail: "Do not use anyone's stream to find or track them. Even being suspected of stream sniping can get your team fined, so take this seriously." },
   { title: 'No TNT traps or TNT in PvP', detail: 'TNT cannot be used to trap players or as a weapon in fights.' },
   { title: 'Use common sense', detail: "No loopholes and no exploits. If it feels like it breaks the spirit of the game, don't do it." },
