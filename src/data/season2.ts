@@ -35,11 +35,11 @@ export const SEASON2_TIER_IN_PROGRESS: Season2Tier | null = null;
 export const SEASON2_BIDDING_AT: string | null = '2026-11-27T17:00:00Z';
 
 /**
- * When the Season 2 server opens. 26 December 2026 (GMT, so 'Z').
+ * When the Season 2 server opens. 28 December 2026 (GMT, so 'Z').
  * The start time isn't fixed yet, so this is midnight that day and the site says "start time TBA".
- * When the time is known, put it here (e.g. '2026-12-26T19:00:00Z') and set SEASON2_START_TIME_KNOWN to true.
+ * When the time is known, put it here (e.g. '2026-12-28T19:00:00Z') and set SEASON2_START_TIME_KNOWN to true.
  */
-export const SEASON2_START_AT: string | null = '2026-12-26T00:00:00Z';
+export const SEASON2_START_AT: string | null = '2026-12-28T00:00:00Z';
 export const SEASON2_START_TIME_KNOWN = false;
 
 /** What's changed since Season 1. */

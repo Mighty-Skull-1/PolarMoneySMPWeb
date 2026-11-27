@@ -3,7 +3,7 @@
 /** Voting opened after the bidding (Fri 27 Nov, 6:40pm UK). */
 export const PREDICTIONS_OPEN_AT = '2026-11-27T18:40:00Z';
 /** Voting locks when the server starts. */
-export const PREDICTIONS_CLOSE_AT = '2026-12-26T00:00:00Z';
+export const PREDICTIONS_CLOSE_AT = '2026-12-28T00:00:00Z';
 
 export type PredictionTeam = 'red' | 'blue' | 'green' | 'pink';
 
